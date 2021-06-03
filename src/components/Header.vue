@@ -1,7 +1,11 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button text="Add Task" color="green" />
+    <Button
+      @btn-click="$emit('toggle-add-task')"
+      :text="showAddTask ? 'Close' : 'Add Task'"
+      :color="showAddTask ? 'Red' : 'Green'"
+    />
   </header>
 </template>
 <script>
@@ -10,10 +14,8 @@ import Button from "./Button";
 export default {
   name: "Header",
   props: {
-    title: {
-      type: String,
-      default: "My Title",
-    },
+    title: String,
+    showAddTask: Boolean,
     // Other ways to define props
     // props: ["title"],
     // props: {

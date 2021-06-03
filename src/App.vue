@@ -1,48 +1,32 @@
 <template>
   <div class="container">
-    <Header title="Custom Header" />
-    <Tasks :tasks="tasks" />
+    <Header
+      @toggle-add-task="toggleAddTask"
+      title="Custom Header"
+      :showAddTask="showAddTask"
+    />
+
+    <router-view :showAddTask="showAddTask"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
-import Tasks from "./components/Tasks";
+import Footer from "./components/Footer";
 export default {
   name: "App",
-  components: { Header, Tasks },
+  components: { Header, Footer },
   data() {
     return {
-      tasks: [],
+      showAddTask: false,
     };
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Hello world",
-        day: "March 1st at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: "Hello world2",
-        day: "March 1st at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: 3,
-        text: "Hello world3",
-        day: "March 1st at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: 4,
-        text: "Hello world4",
-        day: "March 1st at 2:30pm",
-        reminder: true,
-      },
-    ];
+
+  methods: {
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask;
+    },
   },
 };
 </script>
